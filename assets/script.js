@@ -9,7 +9,8 @@ let ccQuantity = 0 // Chocolate Chip
 let sugarQuantity = 0 // Sugar Sprinkle
 let totalQuantity = gbQuantity + ccQuantity + sugarQuantity 
 
-let cookieQuantity = document.createElement('span')
+//change total quantity
+let cookieQuantity = document.createElement('div')
 cookieQuantity.setAttribute('id', 'qty-total')
 cookieQuantity.textContent = totalQuantity
 
@@ -21,12 +22,10 @@ function changeQuantity(displayQuantity){
 }
 // Event listener for clicks on the "+" button for Gingerbread cookies
 // selecting the element with an id of add-gb
-const gbPlusBtn = document.querySelector('#add-gb')
+gbPlusBtn = document.getElementbyId('add-gb')
 gbPlusBtn.addEventListener('click', function(){
     gbQuantity = gbQuantity + 1
-    changeQuantity('qty-gb')
-    totalQuantity += 0
-    cookieQuantity.textContent = totalQuantity
+    totalQuantity = totalQuantity + 1
     console.log('Gingerbread + button was clicked!')
 })
 
@@ -47,20 +46,6 @@ function changeQuantity(displayQuantity){
     let totalQuantity = document.querySelector('qty-total')
     totalQuantity.textContent = displayQuantity
 }
-
-
-
-
-
-// selecting the element with an id of credit
-const credit = document.querySelector('#credit')
-
-
-
-//selecting the element with an id of minus-gb
-const gbMinusBtn = document.querySelector('#minus-gb')
-
-
 //selecting the element with an id of add-cc
 const ccPlusBtn = document.querySelector('#add-cc')
 //selecting the element with an id of minus-cc
@@ -103,3 +88,6 @@ sugPlusBtn.addEventListener('click', function(){
 sugMinusBtn.addEventListener('click', function(){
     console.log('Sugar - button was clicked!')
 })
+
+// selecting the element with an id of credit
+const credit = document.querySelector('#credit')
