@@ -1,5 +1,5 @@
 // First, tell us your name
-var yourName = "Mason Wagoner" // HINT: Replace this with your own name!
+var yourName = "Mason Wagoner" 
 
 let body = document.querySelector('body')
 
