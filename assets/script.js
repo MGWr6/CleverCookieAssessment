@@ -1,93 +1,90 @@
 // First, tell us your name
-let yourName = "Mason Wagoner" // HINT: Replace this with your own name!
+var yourName = "Mason Wagoner" // HINT: Replace this with your own name!
 
-// We'll use these variables to track the counts of each cookie type
 let body = document.querySelector('body')
 
-let gbQuantity = 0 // Gingerbread
-let ccQuantity = 0 // Chocolate Chip
-let sugarQuantity = 0 // Sugar Sprinkle
-let totalQuantity = gbQuantity + ccQuantity + sugarQuantity 
-
-//change total quantity
-let cookieQuantity = document.createElement('div')
-cookieQuantity.setAttribute('id', 'qty-total')
-cookieQuantity.textContent = totalQuantity
-
-
-//change quantity of gingerbread cookies displayed
-function changeQuantity(displayQuantity){
-    let gbQuantity = document.querySelector('qty-gb')
-    gbQuantity.textContent = displayQuantity
-}
-// Event listener for clicks on the "+" button for Gingerbread cookies
-// selecting the element with an id of add-gb
-gbPlusBtn = document.getElementbyId('add-gb')
-gbPlusBtn.addEventListener('click', function(){
-    gbQuantity = gbQuantity + 1
-    totalQuantity = totalQuantity + 1
-    console.log('Gingerbread + button was clicked!')
-})
-
-
-
-//change quantity of chocolote chip cookies displayed
-function changeQuantity(displayQuantity){
-    let ccQuantity = document.querySelector('qty-cc')
-    ccQuantity.textContent = displayQuantity
-}
-//change quantity of sugar cookies displayed
-function changeQuantity(displayQuantity){
-    let sugarQuantity = document.querySelector('qty-sugar')
-    sugarQuantity.textContent = displayQuantity
-}
-//change quantity of total cookies displayed
-function changeQuantity(displayQuantity){
-    let totalQuantity = document.querySelector('qty-total')
-    totalQuantity.textContent = displayQuantity
-}
-//selecting the element with an id of add-cc
-const ccPlusBtn = document.querySelector('#add-cc')
-//selecting the element with an id of minus-cc
-const ccMinusBtn = document.querySelector('#minus-cc')
-
-//selecting the element with an id of add-sugar
-const sugPlusBtn = document.querySelector('#add-sugar')
-//selecting the element with an id of minus-sugar
-const sugMinusBtn = document.querySelector('#minus-sugar')
-
+// We'll use these variables to track the counts of each cookie type
+var gb = 0 // Gingerbread
+var cc = 0 // Chocolate Chip
+var sugar = 0 // Sugar Sprinkle
+var orderTotal = 0 // Total cookies
 
 
 // Code to update name display
+const credit = document.querySelector('#credit')
 credit.textContent = `Created by ${yourName}`
 
 
+// Button functionality
+const gbPlusBtn = document.querySelector('#add-gb')
+const gbMinusBtn = document.querySelector('#minus-gb')
+const ccPlusBtn = document.querySelector('#add-cc')
+const ccMinusBtn = document.querySelector('#minus-cc')
+const sugarPlusBtn = document.querySelector('#add-sugar')
+const sugarMinusBtn = document.querySelector('#minus-sugar')
+
+// Quantity displayed in Order Summary
+var gbQty = document.querySelector('#qty-gb')
+var ccQty = document.querySelector('#qty-cc')
+var sugarQty = document.querySelector('#qty-sugar')
+var quantityTotal = document.querySelector('#qty-total')
 
 
-//Event listener for clicks on the "-" button for Gingerbread cookies
-gbMinusBtn.addEventListener('click', function(){
-    console.log('Gingerbread - button was clicked!')
+// Gingerbread plus button
+gbPlusBtn.addEventListener('click', function() {
+    gb++                                        // Each click of the gbPlusBtn will increase count by 1
+    gbQty.textContent = gb 
+    orderTotal++                                // Each click of the gbPlusBtn will increase the order total by 1
+    quantityTotal.textContent = orderTotal 
+})
+// Gingerbread minus button
+gbMinusBtn.addEventListener('click', function() {
+    if (gb > 0) {                               // As long as gb cookies are > 0, you can subtract the count by 1 for each button click
+    gb-- }                              
+    gbQty.textContent = gb
+    if (gb > 0) {                               // As long as gb cookies are > 0, the order total will subtract by 1 for each button click
+        orderTotal-- }                  
+        else (gb = 0)                           // If the gb cookie count is 0, the order total will reflect the total of all three cookies.
+        orderTotal = gb + cc + sugar            // I wrote this to eliminate the issue of when gb cookies reached "0" and there were other cookies in the order summary,
+    quantityTotal.textContent = orderTotal      // clicking the gbMinusBtn would still remove 1 cookie from the total each time it was clicked. I'm sure this is not the best way to do it but it works ¯\_(ツ)_/¯
 })
 
 
-// Event listener for clicks on the "+" button for Chocolate Chip cookies
-ccPlusBtn.addEventListener('click', function(){
-    console.log('Chocolate Chip + button was clicked!')
+// Chocolate Chip plus button
+ccPlusBtn.addEventListener('click', function() {
+    cc++
+    ccQty.textContent = cc
+    orderTotal++
+    quantityTotal.textContent = orderTotal 
 })
-//Event listener for clicks on the "-" button for Chocolate Chip cookies
-ccMinusBtn.addEventListener('click', function(){
-    console.log('Chocolate Chip - button was clicked!')
+//Chocolate Chip minus button
+ccMinusBtn.addEventListener('click', function() {
+    if (cc > 0) {
+        cc-- }
+    ccQty.textContent = cc
+    if (cc > 0) {
+        orderTotal-- } 
+        else (cc = 0)
+        orderTotal = gb + cc + sugar 
+    quantityTotal.textContent = orderTotal 
 })
 
 
-// Event listener for clicks on the "+" button for Sugar cookies
-sugPlusBtn.addEventListener('click', function(){
-    console.log('Sugar + button was clicked!')
+//Sugar cookie plus button
+sugarPlusBtn.addEventListener('click', function() {
+    sugar++
+    sugarQty.textContent = sugar
+    orderTotal++
+    quantityTotal.textContent = orderTotal 
 })
-//Event listener for clicks on the "-" button for Sugar cookies
-sugMinusBtn.addEventListener('click', function(){
-    console.log('Sugar - button was clicked!')
+//Sugar cookie minus button
+sugarMinusBtn.addEventListener('click', function(){
+    if (sugar > 0) {
+        sugar-- }
+    sugarQty.textContent = sugar
+    if (sugar > 0) {
+        orderTotal-- } 
+        else (sugar = 0)
+        orderTotal = gb + cc + sugar 
+    quantityTotal.textContent = orderTotal
 })
-
-// selecting the element with an id of credit
-const credit = document.querySelector('#credit')
